@@ -165,8 +165,10 @@ export function LoginUser(formValues) {
 }
 
 export function LogoutUser() {
-  return async (dispatch, getState) => {
-    window.localStorage.removeItem("user_id");
+  return async (dispatch) => {
+    window.localStorage.clear();
+    window.sessionStorage.clear();
+    alert("Logged out");
     dispatch(slice.actions.signOut());
   };
 }

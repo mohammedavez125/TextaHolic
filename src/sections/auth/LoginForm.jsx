@@ -11,15 +11,13 @@ import { LoadingButton } from "@mui/lab";
 import FormProvider, { RHFTextField } from "../../components/hook-form";
 import { Eye, EyeSlash } from "phosphor-react";
 import { LoginUser } from "../../redux/slices/auth";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // ----------------------------------------------------------------------
 
 export default function AuthLoginForm() {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-
-  const { isLoading } = useSelector((state) => state.auth);
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -28,14 +26,8 @@ export default function AuthLoginForm() {
     password: Yup.string().required("Password is required"),
   });
 
-  const defaultValues = {
-    email: "demo@tawk.com",
-    password: "demo1234",
-  };
-
   const methods = useForm({
     resolver: yupResolver(LoginSchema),
-    defaultValues,
   });
 
   const {

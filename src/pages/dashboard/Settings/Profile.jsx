@@ -4,10 +4,10 @@ import { CaretLeft } from "phosphor-react";
 import ProfileForm from "../../../sections/dashboard/Settings/ProfileForm";
 import { useDispatch } from "react-redux";
 import { FetchUserProfile } from "../../../redux/slices/app";
-
+import { useNavigate } from "react-router-dom";
 const Profile = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(FetchUserProfile());
   }, []);
@@ -33,7 +33,11 @@ const Profile = () => {
           <Stack p={4} spacing={5}>
             {/* Header */}
             <Stack direction="row" alignItems={"center"} spacing={3}>
-              <IconButton>
+              <IconButton
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
                 <CaretLeft size={24} color={"#4B4B4B"} />
               </IconButton>
 

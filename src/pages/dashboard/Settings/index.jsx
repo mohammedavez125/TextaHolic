@@ -7,7 +7,6 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-
 import {
   CaretLeft,
   Bell,
@@ -21,11 +20,13 @@ import {
 } from "phosphor-react";
 
 import { useTheme } from "@mui/material/styles";
-import { faker } from "@faker-js/faker";
 import ThemeDialog from "../../../sections/dashboard/Settings/ThemeDialog";
 import ShortcutDialog from "../../../sections/dashboard/Settings/ShortcutDialog";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
+  const { user } = useSelector((state) => state.app);
   const theme = useTheme();
 
   const [openTheme, setOpenTheme] = useState(false);
@@ -97,7 +98,7 @@ const Settings = () => {
       onclick: () => {},
     },
   ];
-
+  const navigate = useNavigate();
   return (
     <>
       <Stack direction="row" sx={{ width: "100%" }}>
@@ -119,7 +120,7 @@ const Settings = () => {
           <Stack p={4} spacing={5}>
             {/* Header */}
             <Stack direction="row" alignItems={"center"} spacing={3}>
-              <IconButton>
+              <IconButton onClick={() => navigate("/")}>
                 <CaretLeft size={24} color={"#4B4B4B"} />
               </IconButton>
 
@@ -128,34 +129,28 @@ const Settings = () => {
 
             {/* Profile */}
             <Stack direction="row" spacing={3}>
-              <Avatar
-                src={faker.image.avatar()}
-                sx={{ height: 56, width: 56 }}
-              />
+              <Avatar src={user.avatar} sx={{ height: 56, width: 56 }} />
               <Stack spacing={0.5}>
-                <Typography variant="article">{`${faker.name.firstName()} ${faker.name.lastName()}`}</Typography>
-                <Typography variant="body2">{faker.random.words()}</Typography>
+                <Typography variant="article">{`${user.firstName} ${user.lastName}`}</Typography>
+                <Typography variant="body2">{user.about}</Typography>
               </Stack>
             </Stack>
             {/* List */}
             <Stack spacing={4}>
-              {list.map(({ key, icon, title, onclick }) => {
-                return (
-                  <>
-                    <Stack
-                      onClick={onclick}
-                      sx={{ cursor: "pointer" }}
-                      spacing={2}
-                    >
-                      <Stack alignItems={"center"} direction="row" spacing={2}>
-                        {icon}
-                        <Typography variant="body2">{title}</Typography>
-                      </Stack>
-                      {key !== 7 && <Divider />}
-                    </Stack>
-                  </>
-                );
-              })}
+              {list.map(({ key, icon, title, onclick }) => (
+                <Stack
+                  onClick={onclick}
+                  sx={{ cursor: "pointer" }}
+                  spacing={2}
+                  key={key} // Ensure this is unique for each item in the list
+                >
+                  <Stack alignItems="center" direction="row" spacing={2}>
+                    {icon}
+                    <Typography variant="body2">{title}</Typography>
+                  </Stack>
+                  {key !== 7 && <Divider />}
+                </Stack>
+              ))}
             </Stack>
           </Stack>
         </Box>

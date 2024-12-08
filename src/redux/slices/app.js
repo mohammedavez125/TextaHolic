@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
-// import S3 from "../../utils/s3";
 import { v4 } from "uuid";
 // import S3 from "../../utils/s3";
 import { S3_BUCKET_NAME } from "../../config";
-// ----------------------------------------------------------------------
 
 const initialState = {
   user: {},
@@ -12,7 +10,7 @@ const initialState = {
     open: false,
     type: "CONTACT", // can be CONTACT, STARRED, SHARED
   },
-  isLoggedIn: true,
+  isLoggedIn: false,
   tab: 0, // [0, 1, 2, 3]
   snackbar: {
     open: null,
@@ -254,6 +252,7 @@ export const FetchUserProfile = () => {
       })
       .catch((err) => {
         console.log(err);
+        alert("You are not logged in! Please log in to get access.");
       });
   };
 };

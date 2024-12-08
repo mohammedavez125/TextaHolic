@@ -35,13 +35,21 @@ export default function Register() {
         }}
       >
         {"By signing up, I agree to "}
-        <Link underline="always" color="text.primary">
-          Terms of Service
-        </Link>
+        <span
+          onClick={() => alert("no Terms of Service Document yet - Textaholic")}
+        >
+          <Link underline="always" color="text.primary">
+            Terms of Service
+          </Link>
+        </span>
         {" and "}
-        <Link underline="always" color="text.primary">
-          Privacy Policy
-        </Link>
+        <span
+          onClick={() => alert("No Privacy Policy Document yet-Textaholic")}
+        >
+          <Link underline="always" color="text.primary">
+            Privacy Policy
+          </Link>
+        </span>
         .
       </Typography>
 

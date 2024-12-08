@@ -11,13 +11,12 @@ import {
 } from "@mui/material";
 import { ArrowLeft } from "phosphor-react";
 import useResponsive from "../../hooks/useResponsive";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { UpdateSidebarType } from "../../redux/slices/app";
-import { faker } from "@faker-js/faker";
 import { DocMsg, LinkMsg } from "./Conversation";
-import { Shared_docs, Shared_links } from "../../data";
 
 const Media = () => {
+  const user = useSelector((state) => state.app.user);
   const dispatch = useDispatch();
 
   const theme = useTheme();
@@ -76,7 +75,7 @@ const Media = () => {
           padding={value === 1 ? 1 : 3}
         >
           {/* <Conversation starred={true} /> */}
-          {(() => {
+          {/* {(() => {
             switch (value) {
               case 0:
                 return (
@@ -84,8 +83,8 @@ const Media = () => {
                     {[0, 1, 2, 3, 4, 5, 6].map((el) => (
                       <Grid item xs={4}>
                         <img
-                          src={faker.image.city()}
-                          alt={faker.internet.userName()}
+                          // src={faker.image.city()}
+                          // alt={faker.internet.userName()}
                         />
                       </Grid>
                     ))}
@@ -100,7 +99,7 @@ const Media = () => {
               default:
                 break;
             }
-          })()}
+          })()} */}
         </Stack>
       </Stack>
     </Box>

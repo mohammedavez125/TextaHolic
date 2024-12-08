@@ -5,7 +5,6 @@ import { SimpleBarStyle } from "../../components/Scrollbar";
 
 import { ChatHeader, ChatFooter } from "../../components/Chat";
 import useResponsive from "../../hooks/useResponsive";
-import { Chat_History } from "../../data";
 import {
   DocMsg,
   LinkMsg,

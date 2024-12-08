@@ -4,7 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import { Box, Divider, IconButton, Stack } from "@mui/material";
 import AntSwitch from "../../components/AntSwitch";
 
-import Logo from "../../assets/Images/logo.ico";
+import Logo from "../../assets/Images/logo.jpg";
 
 import useSettings from "../../hooks/useSettings";
 import { Nav_Buttons, Nav_Setting } from "../../data";

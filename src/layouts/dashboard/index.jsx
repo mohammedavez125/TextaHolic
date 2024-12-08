@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
 import { Stack } from "@mui/material";
-import { Navigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import useResponsive from "../../hooks/useResponsive";
 import SideNav from "./SideNav";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  FetchUserProfile,
-  SelectConversation,
-  showSnackbar,
-} from "../../redux/slices/app";
+import { FetchUserProfile } from "../../redux/slices/app";
 // import { socket, connectSocket } from "../../socket";
 import {
   UpdateDirectConversation,
@@ -26,6 +22,7 @@ import {
 // import { PushToVideoCallQueue, UpdateVideoCallDialog } from "../../redux/slices/videoCall";
 
 const DashboardLayout = () => {
+  const navigate = useNavigate();
   const isDesktop = useResponsive("up", "md");
   const dispatch = useDispatch();
   const { user_id } = useSelector((state) => state.auth);
@@ -147,6 +144,11 @@ const DashboardLayout = () => {
   // if (!isLoggedIn) {
   //   return <Navigate to={"/auth/login"} />;
   // }
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/auth/login");
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <>
