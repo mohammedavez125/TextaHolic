@@ -3,6 +3,7 @@ import io from "socket.io-client";
 let socket = io.connect("http://localhost:3001");
 
 const connectSocket = (user_id) => {
+  console.log(user_id, "user_id");
   if (!socket) {
     socket = io("http://localhost:3001/", {
       query: `user_id=${user_id}`,
